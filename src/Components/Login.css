@@ -1,0 +1,53 @@
+.container{
+  display: flex;
+  flex-direction: row;
+}
+.quespart1{
+  width: 70vw;
+  height: 100vh;
+  background-color: rgb(164, 24, 206);
+  border:1px solid black;
+  background-image: url(./../assets/Mask\ group.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.quesAitext{
+  position: relative;
+  top:10px;
+  display: flex;
+  flex-direction: row;
+  gap:10px;
+  margin-left: 10px;
+  color:white;
+}
+.quesAi-Header-text{
+  position:absolute;
+  top: 150px;
+  left:15px;
+  color:white;
+  font-size: 30px;
+}
+.quesAi-Header-text p{
+  font-size: 20px;
+}
+.quespart2{
+  position: relative;
+  top:20vh;
+  left:10vw;
+
+}
+.quespart2 img{
+  width: 50px;
+  height:50px;
+}
+.quespart2 img h2{
+  display: flex;
+}
+input{
+  display: flex;
+  flex-direction: column;
+  width: 15vw;
+  height: 3vh;
+  border-radius: 7px;
+}
