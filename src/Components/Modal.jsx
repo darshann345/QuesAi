@@ -1,15 +1,22 @@
+import { clear } from '@testing-library/user-event/dist/clear';
 import './Modal.css';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 const Modal = ({ isOpen, onClose, onProjectCreated }) => {
     const [projectName, setProjectName] = useState('');
     const [error, setError] = useState(true);
 
-    
+    useEffect(()=>{
+        if(isOpen){
+            setProjectName('')
+        setError(true)
+        }
+    },[isOpen])
     const handleCreateProject = () => {
         if (projectName.trim() === '') {
             setError(true); 
+
         } else {
             setError(false); 
             onProjectCreated(projectName); 
@@ -23,6 +30,8 @@ const Modal = ({ isOpen, onClose, onProjectCreated }) => {
         } else {
             setError(true);
         }
+       
+       
     };
 
     return (

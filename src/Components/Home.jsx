@@ -28,6 +28,7 @@ const Home = () => {
         }));
 
         setProjects(updatedProjects);
+        console.log(updatedProjects)
     }, []);
     
 
@@ -37,7 +38,6 @@ const Home = () => {
             files: 0,
             lastEdited: new Date().toLocaleDateString()
         };
-
         const updatedProjects = [...projects, newProjectDetails];
         setProjects(updatedProjects);
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
@@ -49,6 +49,7 @@ const Home = () => {
         setProjects(updatedProjects);
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
     };
+    
 
     return (
         <div className="app-container">
@@ -101,14 +102,13 @@ const Home = () => {
                                 files={project.files}  
                                 lastEdited={project.lastEdited}
                                 onDelete={() => handleDeleteProject(project.title)}
-                                fileCount={project.uploadedFiles}
                             />
                         ))}
                     </div>
                 </Box>
             )}
 
-            <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} onProjectCreated={handleProjectCreated} />
+    <Modal isOpen={isModalOpen} onClose={() => setModalOpen(false)} onProjectCreated={handleProjectCreated}  />
         </div>
     );
 };
