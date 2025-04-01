@@ -9,7 +9,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DiamondIcon from '@mui/icons-material/Diamond';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import Logo from './../assets/Logo.png';
-import './Login.css';
+import './Main.css';
 import UserProfileLogo from "./../assets/UserProfileLogo.png";
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import LogoutIcon from '@mui/icons-material/Logout';
