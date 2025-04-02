@@ -3,12 +3,15 @@ import './Home.css';
 import HomeImage from "./../assets/Home.png"; 
 import Modal from "./Modal";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Box } from '@mui/material';
+import { Avatar, Box } from '@mui/material';
 import ProjectCard from './ProjectCard';
 
 const Home = () => {
     const [isModalOpen, setModalOpen] = useState(false);
     const [projects, setProjects] = useState([]);
+    const [username,setUsername] = useState("")
+    const [selectedImage, setSelectedImage] = useState(null);
+
 
     useEffect(() => {
         const savedProjects = JSON.parse(localStorage.getItem("projects")) || [];
@@ -29,6 +32,13 @@ const Home = () => {
 
         setProjects(updatedProjects);
         console.log(updatedProjects)
+        
+        const savedUsername = localStorage.getItem("user");
+        setUsername(savedUsername)
+
+        const savedUserProfilePic = localStorage.getItem("profileImage");
+        setSelectedImage(savedUserProfilePic);
+
     }, []);
     
 
@@ -49,6 +59,18 @@ const Home = () => {
         setProjects(updatedProjects);
         localStorage.setItem("projects", JSON.stringify(updatedProjects));
     };
+    const handleImageChange = (event) => {
+        if (!event.target.files || event.target.files.length === 0) {
+            return; 
+        }
+        
+        const file = event.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setSelectedImage(imageUrl);
+            localStorage.setItem("profileImage", imageUrl);
+        }
+    };
     
 
     return (
@@ -56,9 +78,37 @@ const Home = () => {
             <header className="app-header">
                 <h1 className="app-title">Ques.AI</h1>
                 <div className="icon-container">
-                    <span className="notification-icon">🔔</span>
-                    <span className="settings-icon">⚙️</span>
+                {
+                    username && (
+                        <>
+                            <div style={{display:'flex' , gap:"10px"}}>
+                            <Avatar
+                                style={{ cursor: "pointer",marginTop:"25px" }}
+                                src={selectedImage}
+                                alt="Profile"
+                                onClick={() => document.getElementById("upload-input").click()}
+                            />
+                            
+                            <input 
+                                type="file"
+                                accept="image/*"
+                                id="upload-input"
+                                style={{ display: "none" }}
+                                onChange={handleImageChange}
+                            />
+
+                                <h4>{username}</h4>
+
+                            </div>
+                        </>
+                    )
+
+                }
+                    <span style={{marginTop:"25px"}}className="notification-icon">🔔</span>
+                    <span style={{marginTop:"25px"}} className="settings-icon">⚙️</span>
+                    
                 </div>
+               
             </header>
 
             {projects.length === 0 ? (

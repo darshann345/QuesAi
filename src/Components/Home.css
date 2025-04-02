@@ -21,6 +21,8 @@ body {
   
   .icon-container {
     font-size: 1.5em;
+    display: flex;
+    flex-direction: row-reverse;
   }
   
   .main-content {

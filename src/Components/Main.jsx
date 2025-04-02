@@ -18,10 +18,12 @@ const Main = () => {
     if (!isRegistering) {
       const storedEmail = localStorage.getItem("email");
       const storedPassword = localStorage.getItem("password");
+      const storedUser = localStorage.getItem("user")
 
       if (storedEmail && storedPassword) {
         setEmail(storedEmail);
         setPassword(storedPassword);
+        setUsername(storedUser)
       }
     } else {
       setEmail("");
@@ -44,6 +46,7 @@ const Main = () => {
     if (isRegistering) {
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
+      localStorage.setItem("user",username);
       showSnackbar("Registration successful! Please log in.", "success");
       setIsRegistering(false);
     } else {
